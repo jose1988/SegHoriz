@@ -183,7 +183,7 @@
 				}else{
 					?>
         			<tr>
-            			<td style="text-align:center"><?php echo $resultProcesadasXAnalista->return->nombre ?></td>
+            			<td style="text-align:center"><?php echo $resultSolicitudesProcesadasXAnalista->return->nombre ?></td>
               			<?php
 							//Obtengo el id del analista
 							$id=$resultSolicitudesProcesadasXAnalista->return->idanalista;
