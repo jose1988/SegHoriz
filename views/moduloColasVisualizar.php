@@ -55,13 +55,13 @@
 		function refreshTable(){
 			
 			/*Ajax de la tabla de conectados*/
-			$('#tableConectados').load('../ajax/moduloColasVisualizarTablaConectados.php', 
+			$('#tableConectados').load('../ajax/tablaConectados.php', 
 				function(){ setTimeout(refreshTable, 5000);
 			});
 			
 			/*Ajax de la tabla de cola*/
-			$('#tableCola').load('../ajax/moduloColasVisualizarTablaCola.php', 
-				function(){ setTimeout(refreshTable, 2000);
+			$('#tableCola').load('../ajax/tablaCola.php', 
+				function(){ setTimeout(refreshTable, 5000);
 			});
 			
 		}
@@ -157,7 +157,7 @@
        			<div id="containerUno" style="min-width: 100px; height: 200px; margin: 0 auto">
                 	<a href="moduloColasDetalle.php"><button type="button" class="btn btn-success"><i class="icon-arrow-right"></i> Ver Gráfico</button></a>
                     
-                    <a href="moduloColasDetalle.php"><button type="button" class="btn btn-success"><i class="icon-arrow-right"></i> Operaciones Cola</button></a>
+                    <a href="moduloColasPriorizar.php"><button type="button" class="btn btn-success"><i class="icon-arrow-right"></i> Operaciones Cola</button></a>
         		</div>
        		</div>
        </div>

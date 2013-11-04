@@ -54,7 +54,7 @@
 		});
 		
 		function refreshTable(){ 
-			$('#tableHolder').load('../ajax/moduloColasDetalle.php', 
+			$('#tableHolder').load('../ajax/tablaTotalPenPro.php', 
 				function(){ setTimeout(refreshTable, 5000); 
 			}); 
 		} 
