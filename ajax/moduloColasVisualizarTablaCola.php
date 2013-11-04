@@ -1,4 +1,4 @@
-<?php
+<?php 
 	require_once("../lib/nusoap.php");
   	$wsdl_url = 'http://localhost:15362/HoriFarmacia/ColasWS?WSDL';	
 	$client = new SOAPClient($wsdl_url);	
@@ -42,13 +42,31 @@
 		$procesadas=$resultSolicitudesProcesadas->return;
 	}
 	
-	//Operadores Conectados con las Solicitudes que han Procesados (Al cual le asigne '1' si esta procesada)
-	$estadoAnaSolPro= array('estado' =>'1');
-    $resultSolicitudesProcesadasXAnalista = $client->listaSolicitudesProcesadasXFecha($estadoAnaSolPro);
-	
-	//Operadores Conectados tengan o no Solicitudes procesadas el día de hoy
-	$estadoAnaCone= array('estado' =>'1');
-	$resultConectados=$client->analistasConectados($estadoOpeCon);
-	
-	include("../views/moduloColasVisualizar.php");
+$solPendXProc=$totalCola-$totalColaHoy;
+
+echo '<table border="0">';
+  echo'<tbody>';
+   	echo'<tr>';
+  	 	echo '<th align="left">Solicitudes Pendientes por Procesar: </th>';
+    	echo '<td align="right">'.$solPendXProc.'</td>';
+    echo '</tr>';
+    echo '<tr>';
+    	echo '<th align="left">Solicitudes Ingresadas en Cola Hoy: </th>';
+        echo '<td align="right">'.$totalColaHoy.'</td>';
+	echo '</tr>';
+    echo '<tr>';
+    	echo '<th align="left">Total de Solicitudes por Procesar: </th>';
+        echo '<td align="right">'.$totalCola.'</td>';
+    echo '</tr>';
+    echo '<tr>';
+    	echo '<th align="left">Operadores Conectados: </th>';
+        echo '<td align="right">'.$conectados.'</td>';
+   	echo '</tr>';
+    echo '<tr>';
+    	echo '<th align="left">Solicitudes Procesadas: </th>';
+        echo '<td align="right">'.$procesadas.'</td>';
+    echo '</tr>';
+  echo '</tbody>';
+echo '</table>';
+
 ?>

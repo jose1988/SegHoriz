@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Seguros Horizonte | HorizonLine</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
@@ -46,28 +46,20 @@
 	<link href="../css/footable.sortable-0.1.css" rel="stylesheet" type="text/css" />
 	<link href="../css/footable.paginate.css" rel="stylesheet" type="text/css" />
     
+    
     <!-- AJAX DE RECARGO DE TABLA-->
     <script type="text/javascript"> 
 		$(document).ready(function(){ 
 			refreshTable();
 		});
 		
-		function refreshTable(){
-			
-			/*Ajax de la tabla de conectados*/
-			$('#tableConectados').load('../ajax/moduloColasVisualizarTablaConectados.php', 
-				function(){ setTimeout(refreshTable, 5000);
-			});
-			
-			/*Ajax de la tabla de cola*/
-			$('#tableCola').load('../ajax/moduloColasVisualizarTablaCola.php', 
-				function(){ setTimeout(refreshTable, 2000);
-			});
-			
-		}
-		
-		
+		function refreshTable(){ 
+			$('#tableHolder').load('../ajax/moduloColasDetalle.php', 
+				function(){ setTimeout(refreshTable, 5000); 
+			}); 
+		} 
     </script>
+    
 </head>
 
    
@@ -110,21 +102,10 @@
            
 		<!--Caso pantalla uno-->
        <div class="tab-content">
-       </br>
-       </br>
-       <h1>Datos de las Solicitudes</h1>
+       
        <div class="span10">
-       		<div class="span5"> 
-       		<br>
-            	<div id="tableCola"></div>
-          </div>
-          
-          	<div class="span4">
-       			<div id="containerDos" style="min-width: 100px; height: 200px; margin: 0 auto">
-        		</div>
-       		</div>
-          
-        </div>
+       		<a href="moduloColasVisualizar.php"><button type="button" class="btn btn-success"><i class="icon-arrow-left"></i> Regresar</button></a>
+       </div>
        
        <div class="span10">
  
@@ -132,34 +113,33 @@
         <div class="span5">
        		<br>
        		<br>
-            
         <?php 
-			//Verificando que este vacio o sea null
-			if(!isset($resultSolicitudesProcesadasXAnalista->return)){
-		?>
-       			<div class="alert alert-block" align="center">
+			//Verificando que esta vacio o sea null
+			if(!isset($resultTotalAnalistas)){
+				?>
+				 <div class="alert alert-block" align="center">
    					<h2 style="color:rgb(255,255,255)" align="center">Atención</h2>
-    				<h4 align="center">No Existen Registros de Analistas</h4>
+    				<h4 align="center">No se han Procesado Solicitudes</h4>
    			     </div>
-       		
-             <?php
+				 <?php 
              }
 			 //Si existen registros muestro la tabla
 			 else{?>
-				 	<div id="tableConectados"></div>
+				 <div id="tableHolder"></div>
 				 <?php }?>
        		</div>
+       
+       <?php //Verificando que no este vacio o no sea null
+			if(isset($resultSolicitudesProcesadasXAnalista->return)){ 
+		?>   
             <div class="span4">
             	<br>
        			<br>
-                <br>
-       			<br>
-       			<div id="containerUno" style="min-width: 100px; height: 200px; margin: 0 auto">
-                	<a href="moduloColasDetalle.php"><button type="button" class="btn btn-success"><i class="icon-arrow-right"></i> Ver Gráfico</button></a>
-                    
-                    <a href="moduloColasDetalle.php"><button type="button" class="btn btn-success"><i class="icon-arrow-right"></i> Operaciones Cola</button></a>
+       			<div id="containerUno" style="min-width: 200px; height: 400px; margin: 0 auto">
+                	
         		</div>
        		</div>
+           <?php }?>
        </div>
        	
        </div>
@@ -173,18 +153,38 @@
     <script> /*Funciones de los gráfico*/
 	$(function () {
 		
-		/*Gráfico del total de las solicitudes contra las solicitudes asignadas y no asignadas*/
-        $('#containerDos').highcharts({
+		/*Gráfico del total de las solicitudes contra las solicitudes procesadas por cada analista*/
+        $('#containerUno').highcharts({
             chart: {
                 type: 'column'
             },
             title: {
                 text: 'Total de Solicitudes'
             },
+			subtitle: {
+                text: 'Procesadas por Analista'
+            },
             xAxis: {
                 categories: [
-					'Asignadas',
-					'No Asignadas'
+					<?php 
+						if(count($resultSolicitudesProcesadasXAnalista->return)>1){
+				
+							for($i=0;$i<count($resultSolicitudesProcesadasXAnalista->return);$i++){
+								if($i==0){?>
+								
+								'<?php echo $resultSolicitudesProcesadasXAnalista->return[$i]->nombre; ?>'
+								
+							<?php }
+								else{ ?>
+									,'<?php echo $resultSolicitudesProcesadasXAnalista->return[$i]->nombre; ?>'
+								<?php }
+							}
+						}
+						else{?>
+								'<?php echo $resultSolicitudesProcesadasXAnalista->return->nombre; ?>'
+							<?php }
+						
+					?>
                 ]
             },
             yAxis: {
@@ -196,7 +196,7 @@
             },
              tooltip: {
                 headerFormat: '<span style="font-size:8px">{point.key}</span><table>',
-                pointFormat: '<tr><td style="color:{series.color};padding:0"> </td>' +
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
                     '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
                 footerFormat: '</table>',
                 shared: true,
@@ -204,19 +204,61 @@
             },
             plotOptions: {
                 column: {
-                    pointPadding: 0.1,
+                    pointPadding: 0.01,
                     borderWidth: 0
                 }
             },
-            series: [{
-				name: 'Total',
+            series: [{				
+                name: 'Procesadas por Analista',
                 data: [
-					<?php echo $totalColaHoy ?>,
-					<?php echo $totalCola-$totalColaHoy ?>
-					]
+					<?php 
+						if(count($resultSolicitudesProcesadasXAnalista->return)>1){
+				
+							for($i=0;$i<count($resultSolicitudesProcesadasXAnalista->return);$i++){
+								
+								//Obtengo el id del analista
+								$id=$resultSolicitudesProcesadasXAnalista->return[$i]->idanalista;
+								//Lo convierto en array
+								$idAnalista=array('idAnalista' => $id);
+								//Llamo al servicio que cuenta cuantas solicitudes fueron procesadas por cada analista 
+								$resultSolicitudesProcesadasConteo = $client->contarSHXidAnalista($idAnalista);
+								if(!isset($resultSolicitudesProcesadasConteo->return)){
+									$procesadasAnalista=0;
+								}else{
+									$procesadasAnalista=$resultSolicitudesProcesadasConteo->return;
+								}
+								
+								if($i==0){
+									echo $procesadasAnalista; 
+								
+								}
+								else{ ?>
+									,<?php echo $procesadasAnalista;
+									}
+							}
+						}
+						else{
+							//Obtengo el id del analista
+							$id=$resultSolicitudesProcesadasXAnalista->return->idanalista;
+							//Lo convierto en array
+							$idAnalista=array('idAnalista' => $id);
+							//Llamo al servicio que cuenta cuantas solicitudes fueron procesadas por cada analista 
+							$resultSolicitudesProcesadasConteo = $client->contarSHXidAnalista($idAnalista);
+							if(!isset($resultSolicitudesProcesadasConteo->return)){
+								$procesadasAnalista=0;
+							}else{
+								$procesadasAnalista=$resultSolicitudesProcesadasConteo->return;
+							}
+							?>
+								<?php echo $procesadasAnalista ?>
+							<?php }
+						
+					?>
+				]
     
             }]
         });
+		
 		
     });
 	</script>
