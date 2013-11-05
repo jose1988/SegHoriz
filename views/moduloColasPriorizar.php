@@ -45,11 +45,30 @@
             	$("#tabla").html(response);
 			}
            }); 
-	    }); 
+	    });
+		
 		
     });
 	</script>  
 	
+      <!-- AJAX DE RECARGO DE TABLA-->
+    <script type="text/javascript" > 
+		$(document).ready(function(){ 
+			refreshTable();
+		});
+		
+		function refreshTable(){
+			
+			/*Ajax de la tabla de conectados*/
+			$('#tabla').load('../ajax/cola.php' , 
+				function(){ setTimeout(refreshTable, 5000);
+			});
+			
+		}
+		
+		
+    </script>
+    
 	<!-- styles -->
 	<link href="../css/bootstrap.css" rel="stylesheet">
 	<link href="../css/bootstrap-combined.min.css" rel="stylesheet">
@@ -147,8 +166,8 @@
 								    while($j<$regCola){ ?>
                                   	<td align="center"> <?php echo $Cola->return[$j]->idcolapreorden?></td>
                                   	<td align="center">  <?php echo $Cola->return[$j]->idpreorden->idpreorden ?></td>
-                                  	<td style="text-align:center"> <?php echo $Cola->return[$j]->fecha ?></td>
-                                </tr>
+                                  	<td style="text-align:center"> <?php echo substr($Cola->return[$j]->fecha,0,10).' '.substr($Cola->return[$j]->fecha,20,25) ?></td>
+                               </tr>
                                 
                                <?php
 									 $j++;
@@ -156,7 +175,7 @@
 									 }else{  ?>
 								  		<td align="center"> <?php echo $Cola->return->idcolapreorden?></td>
                                   		<td align="center">  <?php echo $Cola->return->idpreorden ?></td> 
-                                  		<td style="text-align:center"> <?php echo $Cola->return->fecha ?></td>
+                                  		<td style="text-align:center"> <?php echo substr($Cola->return->fecha,0,10).' '.substr($Cola->return->fecha,20,25) ?></td>
                                 </tr>
 								<?php		 
 									 }

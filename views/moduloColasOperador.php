@@ -38,6 +38,24 @@
     <link href="../css/footable-0.1.css" rel="stylesheet" type="text/css" />
 	<link href="../css/footable.sortable-0.1.css" rel="stylesheet" type="text/css" />
 	<link href="../css/footable.paginate.css" rel="stylesheet" type="text/css" />
+    
+     <!-- AJAX DE RECARGO DE TABLA-->
+    <script type="text/javascript"> 
+		$(document).ready(function(){ 
+			refreshTable();
+		});
+		
+		function refreshTable(){
+			
+			/*Ajax de la tabla de conectados*/
+			$('#actualizar').load('../ajax/operador.php?id=<?php echo $id ?>' , 
+				function(){ setTimeout(refreshTable, 5000);
+			});
+			
+		}
+		
+		
+    </script>
 
 </head>
 
@@ -82,118 +100,16 @@
                   <div class="span10">
                         <a href="moduloColasVisualizar.php"><button type="button" class="btn btn-success"><i class="icon-arrow-left"></i> Regresar</button></a>
                   </div>
-                        
-                  <div class="span10"> 
-                  <br>
-                         <table border="0">
-                           
-                              <tbody>
-                                <tr>
-                                  <th align="left"> Nombre de Operador:</th>
-                                  <td align="right"><?php echo $Nanalista; ?></td>
-                                </tr>
-                             
-                                <tr>
-                                  <th align="left">Solicitudes procesadas hoy:</th>
-                                  <td align="right"><?php echo $reg?></td>
-                                </tr>
-                             
-                                <tr>
-                                  <th align="left">Promedio de Solicitudes atendidas:</th>
-                                  <td align="right"><?php echo $promedio?></td>
-                                </tr>
-                             
-                                <tr>
-                                  <th align="left">Operadores Conectados</th>
-                                  <td align="right"><?php echo $conectados?></td>
-                                </tr>
-                              </tbody>
-                            </table>
-                            
-                  </div>
                   
-                 <div class="span6"> 
-                  <br>
-                
-                        
-                                
-                                <?php
-								if($reg!=0){
-									?>
-									 <table class="footable table table-striped table-bordered" align="center" data-page-size="2">
-                              <thead bgcolor="#B9B9B9">
-								 <tr>
-								   <th style="width:9%">Nro de Preorden</th>
-                                   <th style="width:7%">Fecha Hora</th>
-                                   <th style="width:7%">Aprobacion</th>
-                                   <th style="width:7%">Auditar</th>
-								 </tr>
-							  </thead>
-                              <tbody>
-                                <tr>
-									<?php
-								if($reg>1){
-								  $j=0;
-								     while($j<$reg){ ?>
-                                  <td align="center"> <?php echo $Resultado->return[$j]->preorden->idpreorden ?></td>
-                                  <td align="center">  <?php echo $Resultado->return[$j]->fecha ?></td>
-                                  <td align="center"><?php 
-								  if($Resultado->return[$j]->preorden->aprobado=="A"){
-									  echo "Aprobada";
-								  }
-								  if($Resultado->return[$j]->preorden->aprobado=="D"){
-									  echo "Denegada";
-								  }
-								  if($Resultado->return[$j]->preorden->aprobado=="P"){
-									  echo "Aprobada Parcial";
-								  }
-								  ?></td>
-                                  </td><td style="text-align:center"><a href="moduloColasAuditoria.html?id=<?php echo $id?>"><i class="icon-check"></i></a></td>
-                                   
-                                   
-                                </tr>
-                           
-                           
-                               <?php
-									 $j++;
-									 } 
-									 }else{  ?>
-								  <td align="center">    <?php echo $Resultado->return->preorden->idpreorden ?></td>
-                                  <td align="center">  <?php echo $Resultado->return->fecha ?></td>
-                                  <td align="center"><?php 
-								  if($Resultado->return->preorden->aprobado=="A"){
-									  echo "Aprobada";
-								  }
-								  if($Resultado->return->preorden->aprobado=="D"){
-									  echo "Denegada";
-								  }
-								  if($Resultado->return->preorden->aprobado=="P"){
-									  echo "Aprobada Parcial";
-								  }?>							
-                                  </td><td style="text-align:center"><a href="moduloColasAuditoria.php?id=<?php echo $Resultado->return->preorden->idpreorden ?>"><i class="icon-check"></i></a></td>
-                                   
-                                   
-                                </tr>
-								<?php		 
-									 }
-								   }   else { ?>
-										  <div class="alert alert-block" align="center">
-   										  <h2 style="color:rgb(255,255,255)" align="center">Atención</h2>
-    									  <h4 align="center">El Analista <?php $Nanalista ?> hoy no ha procesado solicitudes</h4>
-   			    					 </div> 
-									 <?php
-									 }
-							     ?>
-                                 
-                              </tbody>
-                            </table>
-                           <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>
-                            
-                  </div>
                   
-              </div>
+                   <div id="actualizar" class="span10">     
+                 
+                  
+                 
+                  
+                   </div>
      
-		
+		    </div>
 		</div><!-- /container -->
 
 	<div id="footer" class="container">
@@ -202,26 +118,9 @@
     
     
     
-    <script><!-- Ocultar segunda patologia y mostrarla (solo para demostración)-->
-    	$(".2da").hide();
-    	$("button.siguiente-patologia").click(function() {
-		  $(".2da").show();
-		});
-    </script>
-    	
-    <script> /*mostrar select de razon de rechazo de medicamento*/
-   		$(".btn-danger").click(function(){
-		  $(this).closest('div').find(".reason").removeClass("ocultar");
-		});
-    </script>
+  
     
-    
-    <script> /*activa el funcionamiento del fancybox para ver los documentos adjuntos*/
-		$(document).ready(function() {
-			$(".fancybox").fancybox();
-		});
-	</script>
-    	
+   
         
 </script>  
 
