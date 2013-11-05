@@ -27,7 +27,6 @@
 	$estadoAnaSolPro= array('estado' =>'1');
     $resultSolicitudesProcesadasXAnalista = $client->listaSolicitudesProcesadasXFecha($estadoAnaSolPro);
 	
-	
 	//Total Analistas
 	$resultTotalAnalistas = $client->listaTotalAnalistas();
 	

@@ -19,6 +19,24 @@
 	$client = new SOAPClient($wsdl_url);	
     $client->decode_utf8 = false;
     
+	//Total de Solicitudes por Procesar
+	$resultTotalSolicitudes = $client->obtenerColaPreOrden();
+	
+	if(!isset($resultTotalSolicitudes->return)){
+		$totalCola=0;
+	}else{
+		$totalCola=$resultTotalSolicitudes->return;
+	}
+	
+	//Total de Solicitudes Ingresadas en Cola Hoy
+	$resultColaHoy = $client->obtenerTotalXFechaHoy();
+	
+	if(!isset($resultColaHoy->return)){
+		$totalColaHoy=0;
+	}else{
+		$totalColaHoy=$resultColaHoy->return;
+	}
+    
 	//Operadores Conectados por Estado (Al cual le asigne '1' si esta conectado)
 	$estadoOpeCon= array('estado' =>'1');
     $resultOperadoresConectados = $client->obtenerTotalOperadoresConectadosXEstado($estadoOpeCon);
@@ -29,12 +47,69 @@
 		$conectados=$resultOperadoresConectados->return;
 	}
 	
+	//Cantidad de Solicitudes Procesadas por Estado (Al cual le asigne '1' si esta procesada)
+	$estadoSolPro= array('estado' =>'1');
+    $resultSolicitudesProcesadas = $client->obtenerSolicitudesProcesadasXFecha($estadoSolPro);
+	
+	if(!isset($resultSolicitudesProcesadas->return)){
+		$procesadas=0;
+	}else{
+		$procesadas=$resultSolicitudesProcesadas->return;
+	}
+
 	//Operadores Conectados tengan o no Solicitudes procesadas el día de hoy
 	$estadoAnaCone= array('estado' =>'1');
 	$resultConectados=$client->analistasConectados($estadoOpeCon);
+	
+	//Total de Solicitudes Pendientes por Procesar
+	$solPendXProc=$totalCola-$totalColaHoy;
 
-	echo
-			'<table class="footable table table-striped table-bordered" align="center" data-page-size="4">
+
+echo '<div class="span4">';
+	echo '<table border="0">';
+  		echo'<tbody>';
+   			echo'<tr>';
+  	 			echo '<th align="left">Solicitudes Pendientes por Procesar: </th>';
+				echo '<td>&nbsp;</td>';
+    			echo '<td align="right">'.$solPendXProc.'</td>';
+    		echo '</tr>';
+    		echo '<tr>';
+    			echo '<th align="left">Solicitudes Ingresadas en Cola Hoy: </th>';
+				echo '<td>&nbsp;</td>';
+        		echo '<td align="right">'.$totalColaHoy.'</td>';
+			echo '</tr>';
+    		echo '<tr>';
+    			echo '<th align="left">Total de Solicitudes por Procesar: </th>';
+				echo '<td>&nbsp;</td>';
+        		echo '<td align="right">'.$totalCola.'</td>';
+    		echo '</tr>';
+    		echo '<tr>';
+    			echo '<th align="left">Operadores Conectados: </th>';
+				echo '<td>&nbsp;</td>';
+        		echo '<td align="right">'.$conectados.'</td>';
+   			echo '</tr>';
+    		echo '<tr>';
+    			echo '<th align="left">Solicitudes Procesadas: </th>';
+				echo '<td>&nbsp;</td>';
+        		echo '<td align="right">'.$procesadas.'</td>';
+    		echo '</tr>';
+  		echo '</tbody>';
+	echo '</table>';
+echo '</div>';
+
+echo '<div class="span5">';
+
+//Verificando que este vacio o sea null
+	if(!isset($resultConectados->return)){
+		echo '<div class="alert alert-block" align="center">';
+   			echo '<h2 style="color:rgb(255,255,255)" align="center">Atención</h2>';
+   			echo '<h4 align="center">No Existen Registros de Analistas</h4>';
+		echo '</div>';
+	}
+
+//Si existen registros muestro la tabla
+	else{
+		echo '<table class="footable table table-striped table-bordered" align="center" data-page-size="4">
         		<thead bgcolor="#B9B9B9">
         			<tr>
 						<th style="text-align:center" data-sort-ignore="true">Ide</th>
@@ -99,9 +174,11 @@
                         </td>
             		</tr>';
 					}
-         		echo '</tbody>';
-        		echo'</table>';
-                echo '<ul id="pagination" class="footable-nav"><span>Pag:</span></ul>';
+       		echo '</tbody>';
+      	echo'</table>';
+      echo '<ul id="pagination" class="footable-nav"><span>Pag:</span></ul>';
+	}
+echo '</div>';
 ?>
 
 <!-- script de paginacion -->
