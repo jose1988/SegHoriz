@@ -38,12 +38,12 @@ $(document).ready(function() {
 	    }); 
 		
 		
-		$('#idpreo').click(function(){
+		$('#idpre').click(function(){
 		
 		$.ajax({
            type: "POST",
            url: "../ajax/priorizarIdPreOrden.php",
-		   data: {'idpreorden': $('#idpre').val()},
+		   data: {'idpreorden': $('#idpreorden').val()},
            dataType: "text",
 
                 success:  function (response) {
@@ -139,9 +139,7 @@ $(document).ready(function() {
                             
                   </div>
                   
-                  <div id="tabla2" class="span6"> 
                   
-                  </div>
                   
                  <div id="tabla" class="span6"> 
                   <br>
@@ -206,7 +204,7 @@ $(document).ready(function() {
                  			 <br>
                          <form class="navbar-search pull-left">
                          Priorizar la PreOrden  
-                          <input id="idpre" name="idpre" type="text" class="search-query" placeholder="Id de la PreOrden" maxlength="50" pattern="[0-9]{1,12}" required/>
+                          <input id="idpreorden" name="idpreorden" type="text" class="search-query" placeholder="Id de la PreOrden" maxlength="50" pattern="[0-9]{1,12}" required/>
                         
                           <button id="idpre"  type="submit" class="btn">Priorizar</button>
                         </form>
@@ -218,6 +216,10 @@ $(document).ready(function() {
       			
 		
 		</div><!-- /container -->
+        
+        <div id="tabla2"> 
+                  
+                  </div>
 
 	<div id="footer" class="container">
 	</div>

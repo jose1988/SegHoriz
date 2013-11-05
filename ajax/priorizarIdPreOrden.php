@@ -1,6 +1,6 @@
  <?php
             
-		   $idPreOrden = array('idpreorden' => $_POST['idpreorden']);
+		   $idPreOrden = array('idPreorden' => $_POST['idpreorden']);
            $Resultad2 = $client->priorizarDeLaColaXidPreOrden($idPreOrden);
 		   
 				  if(!isset($Resultad2->return)){
@@ -20,17 +20,17 @@
 	
 								if($regCola!=0){
 									
-									echo "<table class='footable table table-striped table-bordered' align='center' data-page-size='10'>";
-                              echo "<thead bgcolor'#B9B9B9'>";
-								echo "<tr>";
-								  echo "<th style='width:9%'>Id de Cola </th>";
-                                  echo "<th style='width:7%'>Nro de Preorden</th>";
-                                  echo "<th style='width:7%'>Fecha Hora</th>";
+									echo "<table class='footable table table-striped table-bordered' align='center' data-page-size='10'>
+                              <thead bgcolor'#B9B9B9'>
+								<tr>
+								 <th style='width:9%'>Id de Cola </th>
+                                  <th style='width:7%'>Nro de Preorden</th>
+                                  <th style='width:7%'>Fecha Hora</th>
                                    
-								 echo " </tr>";
-							  echo " </thead>";
-                              echo " <tbody>";
-                               echo "  <tr>";
+								 </tr>
+							  </thead>
+                               <tbody>
+                               <tr>";
 									
 								if($regCola>1){
 								  $j=0;
@@ -58,16 +58,16 @@
 									 
 									 }
 								   }   else { 
-										  echo"<div class='alert alert-block' align='center'>";
-   										 echo "<h2 style='color:rgb(255,255,255)' align='center'>Atención</h2>";
-    									echo  "<h4 align='center'>No hay Solicitudes en Cola </h4>";
-   			    					 echo "</div> ";
+										  echo"<div class='alert alert-block' align='center'>
+   										 <h2 style='color:rgb(255,255,255)' align='center'>Atención</h2>
+    									<h4 align='center'>No hay Solicitudes en Cola </h4>
+   			    					     </div> ";
 									 
 									 }
 							     
                                  
-                              echo " </tbody>";
-                          echo  "</table>";
+                              echo " </tbody>
+                                     </table>";
                           
                   ?>
  
