@@ -55,12 +55,7 @@
 		function refreshTable(){
 			
 			/*Ajax de la tabla de conectados*/
-			$('#tableConectados').load('../ajax/tablaConectados.php', 
-				function(){ setTimeout(refreshTable, 5000);
-			});
-			
-			/*Ajax de la tabla de cola*/
-			$('#tableCola').load('../ajax/tablaCola.php', 
+			$('#tablaColaYConectados').load('../ajax/tablaColaYConectados.php', 
 				function(){ setTimeout(refreshTable, 5000);
 			});
 			
@@ -82,87 +77,57 @@
 			<div class="container">
 				<img alt="" src="../images/header-top-left.png" class="pull-left">
 				<div class="pull-right">
-					
 				</div>
 			</div>
 			<div class="filter-area">
-				<div class="container">
-					
-					<span lang="es">&nbsp;</span></div>
+				<div class="container">					
+					<span lang="es">&nbsp;</span>
+                </div>
 			</div>
 		</div>
 	</div>
 
 	<div id="middle">
 	
-	  <div class="container app-container">
-			 
-	    <div>
+	  	<div class="container app-container">			 
+	    	<div>
 			 	<ul class="nav nav-pills">
 			 		<li class="pull-left">
 			 			<div class="modal-header">
 							<h3>Horizon<span>Line</span> - Farmacia</h3>
 						</div>
-					</li>
-			 		
+					</li>			 		
 			 	</ul>
 		   </div>
            
-		<!--Caso pantalla uno-->
-       <div class="tab-content">
+<!--Caso pantalla uno-->
+   <div class="tab-content">
        </br>
        </br>
        <h1>Datos de las Solicitudes</h1>
        <div class="span10">
-       		<div class="span5"> 
        		<br>
-            	<div id="tableCola"></div>
-          </div>
-          
-          	<div class="span4">
-       			<div id="containerDos" style="min-width: 100px; height: 200px; margin: 0 auto">
-        		</div>
-       		</div>
-          
-        </div>
-       
-       <div class="span10">
- 
-            
-        <div class="span5">
-       		<br>
-       		<br>
-            
-        <?php 
-			//Verificando que este vacio o sea null
-			if(!isset($resultSolicitudesProcesadasXAnalista->return)){
-		?>
-       			<div class="alert alert-block" align="center">
-   					<h2 style="color:rgb(255,255,255)" align="center">Atención</h2>
-    				<h4 align="center">No Existen Registros de Analistas</h4>
-   			     </div>
-       		
-             <?php
-             }
-			 //Si existen registros muestro la tabla
-			 else{?>
-				 	<div id="tableConectados"></div>
-				 <?php }?>
-       		</div>
-            <div class="span4">
-            	<br>
-       			<br>
+       		<div id="tablaColaYConectados"></div>
                 <br>
-       			<br>
-       			<div id="containerUno" style="min-width: 100px; height: 200px; margin: 0 auto">
-                	<a href="moduloColasDetalle.php"><button type="button" class="btn btn-success"><i class="icon-arrow-right"></i> Ver Gráfico</button></a>
-                    
-                    <a href="moduloColasPriorizar.php"><button type="button" class="btn btn-success"><i class="icon-arrow-right"></i> Operaciones Cola</button></a>
+                <a href="moduloColasPriorizar.php"><button type="button" class="btn btn-success"><i class="icon-arrow-right"></i> Operaciones Cola</button></a>
+                <br>
+                <br>
+                <a href="moduloColasDetalle.php"><button type="button" class="btn btn-success"><i class="icon-arrow-right"></i> Gráfico Conectados</button></a>
+       		
+        </div>
+        
+        <div class="span10">
+        
+        	<div class="span2"></div>
+       
+       		<div class="span6">
+        		<br>
+       			<br>            
+            	<div id="grafico" style="min-width: 150px; height: 250px; margin: 0 auto">
         		</div>
        		</div>
-       </div>
        	
-       </div>
+		</div>
 	</div>
     
     <!-- /container -->
@@ -174,7 +139,7 @@
 	$(function () {
 		
 		/*Gráfico del total de las solicitudes contra las solicitudes asignadas y no asignadas*/
-        $('#containerDos').highcharts({
+        $('#grafico').highcharts({
             chart: {
                 type: 'column'
             },
@@ -212,7 +177,7 @@
 				name: 'Total',
                 data: [
 					<?php echo $totalColaHoy ?>,
-					<?php echo $totalCola-$totalColaHoy ?>
+					<?php echo $solPendXProc ?>
 					]
     
             }]

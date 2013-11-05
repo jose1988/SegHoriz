@@ -50,5 +50,8 @@
 	$estadoAnaCone= array('estado' =>'1');
 	$resultConectados=$client->analistasConectados($estadoOpeCon);
 	
+	//Total de Solicitudes Pendientes por Procesar
+	$solPendXProc=$totalCola-$totalColaHoy;
+	
 	include("../views/moduloColasVisualizar.php");
 ?>

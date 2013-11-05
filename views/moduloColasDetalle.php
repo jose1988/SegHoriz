@@ -73,35 +73,32 @@
 		<div class="header-top">
 			<div class="container">
 				<img alt="" src="../images/header-top-left.png" class="pull-left">
-				<div class="pull-right">
-					
+				<div class="pull-right">					
 				</div>
 			</div>
 			<div class="filter-area">
 				<div class="container">
-					
-					<span lang="es">&nbsp;</span></div>
+					<span lang="es">&nbsp;</span>
+                </div>
 			</div>
 		</div>
 	</div>
 
-	<div id="middle">
-	
-	  <div class="container app-container">
-			 
-	    <div>
+<div id="middle">
+
+		<div class="container app-container">	 
+	    	<div>
 			 	<ul class="nav nav-pills">
 			 		<li class="pull-left">
 			 			<div class="modal-header">
 							<h3>Horizon<span>Line</span> - Farmacia</h3>
 						</div>
-					</li>
-			 		
+					</li> 		
 			 	</ul>
 		   </div>
            
-		<!--Caso pantalla uno-->
-       <div class="tab-content">
+	<!--Caso pantalla uno-->
+   	<div class="tab-content">
        
        <div class="span10">
        		<a href="moduloColasVisualizar.php"><button type="button" class="btn btn-success"><i class="icon-arrow-left"></i> Regresar</button></a>
@@ -109,40 +106,38 @@
        
        <div class="span10">
  
-            
-        <div class="span5">
-       		<br>
-       		<br>
-        <?php 
-			//Verificando que esta vacio o sea null
-			if(!isset($resultTotalAnalistas)){
+       		<div class="span4">
+       			<br>
+       			<br>
+        		<?php 
+				//Verificando que esta vacio o sea null
+				if(!isset($resultTotalAnalistas)){
 				?>
-				 <div class="alert alert-block" align="center">
-   					<h2 style="color:rgb(255,255,255)" align="center">Atención</h2>
-    				<h4 align="center">No se han Procesado Solicitudes</h4>
-   			     </div>
-				 <?php 
-             }
-			 //Si existen registros muestro la tabla
-			 else{?>
-				 <div id="tableHolder"></div>
-				 <?php }?>
+				 	<div class="alert alert-block" align="center">
+   						<h2 style="color:rgb(255,255,255)" align="center">Atención</h2>
+    					<h4 align="center">No se han Procesado Solicitudes</h4>
+   			     	</div>
+				<?php 
+             	}
+			 	//Si existen registros muestro la tabla
+			 	else{?>
+				 	<div id="tableHolder"></div>
+				<?php }?>
        		</div>
        
-       <?php //Verificando que no este vacio o no sea null
+       		<?php 
+			//Verificando que no este vacio o no sea null
 			if(isset($resultSolicitudesProcesadasXAnalista->return)){ 
-		?>   
-            <div class="span4">
+			?>   
+            <div class="span5">
             	<br>
        			<br>
-       			<div id="containerUno" style="min-width: 200px; height: 400px; margin: 0 auto">
-                	
+       			<div id="grafico" style="min-width: 150px; max-width: 650px; height: 350px; margin: 0 auto">   	
         		</div>
        		</div>
            <?php }?>
        </div>
-       	
-       </div>
+      </div>
 	</div>
     
     <!-- /container -->
@@ -154,7 +149,7 @@
 	$(function () {
 		
 		/*Gráfico del total de las solicitudes contra las solicitudes procesadas por cada analista*/
-        $('#containerUno').highcharts({
+        $('#grafico').highcharts({
             chart: {
                 type: 'column'
             },
