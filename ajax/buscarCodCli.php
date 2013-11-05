@@ -1,5 +1,8 @@
  <?php
-       
+        require_once('../lib/nusoap.php'); 
+  			$wsdl_url = 'http://localhost:15362/HoriFarmacia/ColasWS?WSDL';
+ 			 $client = new SOAPClient($wsdl_url);
+		    $client->decode_utf8 = false; 
 	   $codCli = array('codCli' => $_POST['codcli']);
        $Resultado = $client->priorizarDeLaColaXcodCli($codCli);
 	   
@@ -8,7 +11,10 @@
 				  }else{
 						  $regCola=count($Resultado->return);
 	   					  $Cola=$Resultado;
+						
 				  }
+				  //echo '<pre>';
+				//  print_r($Cola);
 	  
 	   ?>
 	   <div id="tabla" class="span6"> 
@@ -34,10 +40,10 @@
 								if($regCola>1){
 								  $j=0;
 								     while($j<$regCola){ ?>
-                                  <td align="center"> <?php echo $Cola->return[$j]->idcolapreorden?></td>
-                                  <td align="center">  <?php echo $Cola->return[$j]->idpreorden->idpreorden ?></td>
+                                  <td align="center"> <?php echo $Cola->return[$j]->idcolapreorden; ?></td>
+                                  <td align="center">  <?php echo $Cola->return[$j]->idpreorden->idpreorden; ?></td>
                                  
-                                  <td style="text-align:center"> <?php echo $Cola->return[$j]->fecha ?></td>
+                                  <td style="text-align:center"> <?php echo $Cola->return[$j]->fecha; ?></td>
                                    
                                    
                                 </tr>
@@ -47,10 +53,10 @@
 									 $j++;
 									 } 
 									 }else{  ?>
-								   <td align="center"> <?php echo $Cola->return->idcolapreorden?></td>
-                                  <td align="center">  <?php echo $Cola->return->idpreorden ?></td>
+								   <td align="center"> <?php echo $Cola->return->idcolapreorden; ?></td>
+                                  <td align="center">  <?php echo $Cola->return->idpreorden->idpreorden; ?></td>
                                  
-                                  <td style="text-align:center"> <?php echo $Cola->return->fecha ?></td>
+                                  <td style="text-align:center"> <?php echo $Cola->return->fecha; ?></td>
                                    
                                    
                                 </tr>

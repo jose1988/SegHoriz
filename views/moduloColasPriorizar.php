@@ -22,11 +22,10 @@ $(document).ready(function() {
 	
 	
 	$('#codCli').click(function(){
-		
 		$.ajax({
            type: "POST",
            url: "../ajax/buscarCodCli.php",
-           data: {},
+           data: {'codcli': $('#cedula').val()},
            dataType: "text",
 
                 success:  function (response) {
@@ -132,9 +131,9 @@ $(document).ready(function() {
                          <form class="navbar-search pull-left">
                          Buscar PreOrden(es) 
                          <!-- <input type="text" class="search-query" placeholder="Cedula del cliente" autofocus maxlength="10" pattern="[V,E][-][0-9]{6,8}" required/> -->
-                         <input  type="text" class="search-query" placeholder="Cedula del cliente" autofocus maxlength="10" pattern="[0-9]{1,8}" required/>
+                         <input  id="cedula" name="cedula" type="text" class="search-query" placeholder="Cedula del cliente" autofocus maxlength="10" pattern="[0-9]{1,8}" required/>
                         
-                          <button id="codcli" name="codcli" type="submit" class="btn">Buscar</button>
+                          <button id="codCli" name="codCli" type="button" class="btn">Buscar</button>
                         </form>
                             
                   </div>
