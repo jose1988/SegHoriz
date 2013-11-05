@@ -47,7 +47,7 @@ $(document).ready(function() {
            dataType: "text",
 
                 success:  function (response) {
-                       $("#tabla2").html(response);
+                       $("#tabla").html(response);
 					  
                 }
 
@@ -206,7 +206,7 @@ $(document).ready(function() {
                          Priorizar la PreOrden  
                           <input id="idpreorden" name="idpreorden" type="text" class="search-query" placeholder="Id de la PreOrden" maxlength="50" pattern="[0-9]{1,12}" required/>
                         
-                          <button id="idpre"  type="submit" class="btn">Priorizar</button>
+                          <button id="idpre"  type="button" class="btn">Priorizar</button>
                         </form>
                             
                  		 </div> 

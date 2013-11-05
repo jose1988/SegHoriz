@@ -1,14 +1,10 @@
  <?php
-            
-		   $idPreOrden = array('idPreorden' => $_POST['idpreorden']);
+            require_once('../lib/nusoap.php'); 
+  			$wsdl_url = 'http://localhost:15362/HoriFarmacia/ColasWS?WSDL';
+ 			 $client = new SOAPClient($wsdl_url);
+		    $client->decode_utf8 = false; 
+		   $idPreOrden = array('idPreOrden' => $_POST['idpreorden']);
            $Resultad2 = $client->priorizarDeLaColaXidPreOrden($idPreOrden);
-		   
-				  if(!isset($Resultad2->return)){
-						 echo "No ENVIA EL SERVICIO";
-				  }else{
-					   echo "si lo envia";
-				  }
-		   
 		   $Resultado = $client->imprimirCola();			
 	   
 				  if(!isset($Resultado->return)){
