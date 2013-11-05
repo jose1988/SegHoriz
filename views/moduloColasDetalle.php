@@ -54,7 +54,7 @@
 		});
 		
 		function refreshTable(){ 
-			$('#tableHolder').load('../ajax/tablaTotalPenPro.php', 
+			$('#tablaAnalistas').load('../ajax/tablaTotalPenPro.php', 
 				function(){ setTimeout(refreshTable, 5000); 
 			}); 
 		} 
@@ -109,20 +109,7 @@
        		<div class="span4">
        			<br>
        			<br>
-        		<?php 
-				//Verificando que esta vacio o sea null
-				if(!isset($resultTotalAnalistas)){
-				?>
-				 	<div class="alert alert-block" align="center">
-   						<h2 style="color:rgb(255,255,255)" align="center">Atención</h2>
-    					<h4 align="center">No se han Procesado Solicitudes</h4>
-   			     	</div>
-				<?php 
-             	}
-			 	//Si existen registros muestro la tabla
-			 	else{?>
-				 	<div id="tableHolder"></div>
-				<?php }?>
+				 	<div id="tablaAnalistas"></div>
        		</div>
        
        		<?php 

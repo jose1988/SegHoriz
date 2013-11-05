@@ -30,5 +30,9 @@
 	//Total Analistas
 	$resultTotalAnalistas = $client->listaTotalAnalistas();
 	
+	//Operadores Conectados tengan o no Solicitudes procesadas el día de hoy
+	$estadoAnaCone= array('estado' =>'1');
+	$resultConectados=$client->analistasConectados($estadoAnaCone);
+	
 	include("../views/moduloColasDetalle.php");
 ?>

@@ -65,7 +65,7 @@
 	$solPendXProc=$totalCola-$totalColaHoy;
 
 
-echo '<div class="span4">';
+echo '<div class="span5">';
 	echo '<table border="0">';
   		echo'<tbody>';
    			echo'<tr>';
@@ -98,6 +98,8 @@ echo '<div class="span4">';
 echo '</div>';
 
 echo '<div class="span5">';
+echo '<br>';
+echo '<br>';
 
 //Verificando que este vacio o sea null
 	if(!isset($resultConectados->return)){
@@ -112,7 +114,7 @@ echo '<div class="span5">';
 		echo '<table class="footable table table-striped table-bordered" align="center" data-page-size="4">
         		<thead bgcolor="#B9B9B9">
         			<tr>
-						<th style="text-align:center" data-sort-ignore="true">Ide</th>
+						<th style="text-align:center" data-sort-ignore="true">Id</th>
             			<th style="text-align:center" data-sort-ignore="true">Operador</th>
                 		<th style="text-align:center" data-sort-ignore="true">Solicitudes Procesadas</th>
                 		<th style="text-align:center" data-sort-ignore="true">Visualizar</th>
@@ -166,11 +168,11 @@ echo '<div class="span5">';
 							}else{
 								$procesadasAnalista=$resultSolicitudesProcesadasConteo->return;
 							}
-                        echo '<td style="text-align:center">'.$procesadasAnalista.'</td>';
-                		'<td style="text-align:center">
+						echo '<td style="text-align:center">'.$procesadasAnalista.'</td>';
+                        echo '<td style="text-align:center">
                         	<a href="moduloColasOperador.php?id='.$id.'">
-                        		<i class="icon-eye-open"></i>
-                        	</a>
+                            	<i class="icon-eye-open"></i>
+                            </a>
                         </td>
             		</tr>';
 					}
