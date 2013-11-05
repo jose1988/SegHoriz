@@ -29,8 +29,8 @@
 	<![endif]--> 
 	
 	<!--Load fontAwesome css-->
-	<link rel="stylesheet" type="text/css" media="all" href="font-awesome/css/font-awesome.min.css">
-	<link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" media="all" href="../font-awesome/css/font-awesome.min.css">
+	<link href="../font-awesome/css/font-awesome.css" rel="stylesheet">
 	
 	<!-- [if IE 7]>
 	<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome-ie7.min.css">
@@ -52,31 +52,27 @@
 		<div class="header-top">
 			<div class="container">
 				<img alt="" src="../images/header-top-left.png" class="pull-left">
-				<div class="pull-right">
-					
+				<div class="pull-right">					
 				</div>
 			</div>
 			<div class="filter-area">
 				<div class="container">
-					
-					<span lang="es">&nbsp;</span></div>
+					<span lang="es">&nbsp;</span>
+                </div>
 			</div>
 		</div>
 	</div>
 
 	<div id="middle">
 	
-		<div class="container app-container">
-			 
-			 
+		<div class="container app-container">			 
 			 <div>
 			 	<ul class="nav nav-pills">
 			 		<li class="pull-left">
 			 			<div class="modal-header">
 							<h3>Horizon<span>Line</span> - Farmacia</h3>
 						</div>
-					</li>
-			 		
+					</li>			 		
 			 	</ul>
 			 </div>
 			 
@@ -94,10 +90,7 @@
                               <tbody>
                                 <tr>
                                   <th align="left"> Nombre de Operador:</th>
-                                  <td align="right"><?php 
-								                     echo $Nanalista;
-													 ?>
-                                                    </td>
+                                  <td align="right"><?php echo $Nanalista; ?></td>
                                 </tr>
                              
                                 <tr>

@@ -17,45 +17,38 @@
 	<script type='text/javascript' src="../js/custom.js"></script>
 	<script type='text/javascript' src="../js/jquery.fancybox.pack.js"></script>
        
-	   <script>
-$(document).ready(function() {
+	<script>
+	$(document).ready(function() {
 	
 	
-	$('#codCli').click(function(){
-		$.ajax({
-           type: "POST",
-           url: "../ajax/buscarCodCli.php",
-           data: {'codcli': $('#cedula').val()},
-           dataType: "text",
-
-                success:  function (response) {
-                       $("#tabla").html(response);
-					  
-                }
+		$('#codCli').click(function(){
+			$.ajax({
+           	type: "POST",
+           	url: "../ajax/buscarCodCli.php",
+           	data: {'codcli': $('#cedula').val()},
+           	dataType: "text",
+			success:  function (response) {
+            	$("#tabla").html(response);
+			}
 
            }); 
 	    }); 
 		
 		
 		$('#idpre').click(function(){
-		
-		$.ajax({
-           type: "POST",
-           url: "../ajax/priorizarIdPreOrden.php",
-		   data: {'idpreorden': $('#idpreorden').val()},
-           dataType: "text",
-
-                success:  function (response) {
-                       $("#tabla").html(response);
-					  
-                }
-
+			$.ajax({
+           	type: "POST",
+           	url: "../ajax/priorizarIdPreOrden.php",
+		   	data: {'idpreorden': $('#idpreorden').val()},
+           	dataType: "text",
+			success:  function (response) {
+            	$("#tabla").html(response);
+			}
            }); 
 	    }); 
 		
     });
-        
-</script>  
+	</script>  
 	
 	<!-- styles -->
 	<link href="../css/bootstrap.css" rel="stylesheet">
@@ -68,8 +61,8 @@ $(document).ready(function() {
 	<![endif]--> 
 	
 	<!--Load fontAwesome css-->
-	<link rel="stylesheet" type="text/css" media="all" href="font-awesome/css/font-awesome.min.css">
-	<link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" media="all" href="../font-awesome/css/font-awesome.min.css">
+	<link href="../font-awesome/css/font-awesome.css" rel="stylesheet">
 	
 	<!-- [if IE 7]>
 	<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome-ie7.min.css">
@@ -92,13 +85,12 @@ $(document).ready(function() {
 			<div class="container">
 				<img alt="" src="../images/header-top-left.png" class="pull-left">
 				<div class="pull-right">
-					
 				</div>
 			</div>
 			<div class="filter-area">
 				<div class="container">
-					
-					<span lang="es">&nbsp;</span></div>
+					<span lang="es">&nbsp;</span>
+                </div>
 			</div>
 		</div>
 	</div>
@@ -106,21 +98,17 @@ $(document).ready(function() {
 	<div id="middle">
 	
 		<div class="container app-container">
-			 
-			 
 			 <div>
 			 	<ul class="nav nav-pills">
 			 		<li class="pull-left">
 			 			<div class="modal-header">
 							<h3>Horizon<span>Line</span> - Farmacia</h3>
 						</div>
-					</li>
-			 		
+					</li>			 		
 			 	</ul>
 			 </div>
 			 
-	<!--Caso-->
-			             
+	<!--Caso-->    
               <div class="tab-content">
                   <div class="span10">
                         <a href="moduloColasVisualizar.php"><button type="button" class="btn btn-success"><i class="icon-arrow-left"></i> Regresar</button></a>
@@ -138,50 +126,37 @@ $(document).ready(function() {
                             
                   </div>
                   
-                  
-                  
-                 <div id="tabla" class="span6"> 
-                  <br>
-                
-                        
-                                
-                                <?php
-								if($regCola!=0){
-									?>
-									 <table class="footable table table-striped table-bordered" align="center" data-page-size="10">
-                              <thead bgcolor="#B9B9B9">
-								 <tr>
+                  <div id="tabla" class="span6"> 
+                 	<br>
+                  	<?php
+					if($regCola!=0){
+					?>
+						<table class="footable table table-striped table-bordered" align="center" data-page-size="10">
+                        	<thead bgcolor="#B9B9B9">
+								<tr>
 								   <th style="width:9%">Id de Cola</th>
                                    <th style="width:7%">Nro de Preorden</th>
-                                   <th style="width:7%">Fecha Hora</th>
-                                   
+                                   <th style="width:7%">Fecha Hora</th>  
 								 </tr>
 							  </thead>
-                              <tbody>
-                                <tr>
-									<?php
+                             <tbody>
+                             	<tr>
+								<?php
 								if($regCola>1){
-								  $j=0;
-								     while($j<$regCola){ ?>
-                                  <td align="center"> <?php echo $Cola->return[$j]->idcolapreorden?></td>
-                                  <td align="center">  <?php echo $Cola->return[$j]->idpreorden->idpreorden ?></td>
-                                 
-                                  <td style="text-align:center"> <?php echo $Cola->return[$j]->fecha ?></td>
-                                   
-                                   
+									$j=0;
+								    while($j<$regCola){ ?>
+                                  	<td align="center"> <?php echo $Cola->return[$j]->idcolapreorden?></td>
+                                  	<td align="center">  <?php echo $Cola->return[$j]->idpreorden->idpreorden ?></td>
+                                  	<td style="text-align:center"> <?php echo $Cola->return[$j]->fecha ?></td>
                                 </tr>
-                           
-                           
+                                
                                <?php
 									 $j++;
 									 } 
 									 }else{  ?>
-								   <td align="center"> <?php echo $Cola->return->idcolapreorden?></td>
-                                  <td align="center">  <?php echo $Cola->return->idpreorden ?></td>
-                                 
-                                  <td style="text-align:center"> <?php echo $Cola->return->fecha ?></td>
-                                   
-                                   
+								  		<td align="center"> <?php echo $Cola->return->idcolapreorden?></td>
+                                  		<td align="center">  <?php echo $Cola->return->idpreorden ?></td> 
+                                  		<td style="text-align:center"> <?php echo $Cola->return->fecha ?></td>
                                 </tr>
 								<?php		 
 									 }
@@ -200,32 +175,23 @@ $(document).ready(function() {
                            
                   </div>
                   <div class="span10"> 
-                 			 <br>
+                 		<br>
                          <form class="navbar-search pull-left">
                          Priorizar la PreOrden  
                           <input id="idpreorden" name="idpreorden" type="text" class="search-query" placeholder="Id de la PreOrden" maxlength="50" pattern="[0-9]{1,12}" required/>
                         
                           <button id="idpre"  type="button" class="btn">Priorizar</button>
                         </form>
-                            
-                 		 </div> 
-                  
-              </div>
-              
-      			
-		
+                 		 </div>                  
+              </div>		
 		</div><!-- /container -->
         
-        <div id="tabla2"> 
-                  
-                  </div>
+        <div id="tabla2">                  
+        </div>
 
 	<div id="footer" class="container">
 	</div>
     </div>
-    
-   
-   
 
 <script src="../js/footable.js" type="text/javascript"></script>
 <script src="../js/footable.paginate.js" type="text/javascript"></script>
