@@ -52,19 +52,21 @@ if($regCola!=0){
 				} 
 			}else{  
 				echo "<td >".$Cola->return->idcolapreorden."</td>";
-                echo "<td >".$Cola->return->idpreorden."</td>";
+                echo "<td >".$Cola->return->idpreorden->idpreorden."</td>";
                 echo "<td >".$Cola->return->fecha."</td>";
                 echo "</tr>";
 			}
-}else { 
+	echo " </tbody>
+  	</table>";
+	echo '<ul id="pagination" class="footable-nav"><span>Pag:</span></ul>';
+	
+}else {
+	echo "<br>";
 	echo"<div class='alert alert-block' align='center'>
    		<h2 style='color:rgb(255,255,255)' align='center'>Atención</h2>
 		<h4 align='center'>No hay Solicitudes en Cola </h4>
 	</div> ";
-	}
-	echo " </tbody>
-  	</table>";
-	echo '<ul id="pagination" class="footable-nav"><span>Pag:</span></ul>';
+}
 ?>
  
  <!-- script de paginacion -->
