@@ -108,26 +108,23 @@
        <div class="span10">
        		<br>
        		<div id="tablaColaYConectados"></div>
-                <br>
-                <a href="moduloColasPriorizar.php"><button type="button" class="btn btn-success"><i class="icon-arrow-right"></i> Operaciones Cola</button></a>
-                <br>
-                <br>
-                <a href="moduloColasDetalle.php"><button type="button" class="btn btn-success"><i class="icon-arrow-right"></i> Gráfico Conectados</button></a>
-       		
-        </div>
-        
-        <div class="span10">
-        
-        	<div class="span2"></div>
-       
-       		<div class="span6">
+            
+            <div class="span4">
         		<br>
        			<br>            
             	<div id="grafico" style="min-width: 150px; height: 250px; margin: 0 auto">
         		</div>
        		</div>
-       	
-		</div>
+            
+                <br>
+            <div align="center">
+                <a href="moduloColasPriorizar.php"><button style="width: 200px;" type="button" class="btn btn-success"><i class="icon-arrow-right"></i> Operaciones Cola</button></a>
+                <br>
+                <br>
+                <a href="moduloColasDetalle.php"><button style="width: 200px;" type="button" class="btn btn-success"><i class="icon-arrow-right"></i> Gráfico Conectados</button></a>
+            </div>
+       		
+        </div>
 	</div>
     
     <!-- /container -->

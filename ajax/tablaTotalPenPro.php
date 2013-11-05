@@ -21,16 +21,26 @@
 	
 	//Procesadas (Al cual le asigne '1' si esta procesada)
 	$estadoAnaSolPro= array('estado' =>'1');
-    $resultSolicitudesProcesadasXAnalista = $client->listaSolicitudesProcesadasXFecha($estadoAnaSolPro);
-	
+    $resultSolicitudesProcesadasXAnalista = $client->listaSolicitudesProcesadasXFecha($estadoAnaSolPro);	
 	
 	//Total Analistas
 	$resultTotalAnalistas = $client->listaTotalAnalistas();
-
+	
+	
+	//Verificando que este vacio o sea null
+	if(!isset($resultTotalAnalistas->return)){
+		echo '<div class="alert alert-block" align="center">';
+   			echo '<h2 style="color:rgb(255,255,255)" align="center">Atención</h2>';
+   			echo '<h4 align="center">No Existen Registros de Analistas</h4>';
+		echo '</div>';
+	}
+	
+	//Si existen registros muestro la tabla
+	else{
 		echo '<table class="footable table table-striped table-bordered" align="center" data-page-size="10">
         		<thead bgcolor="#B9B9B9">
         			<tr>
-						<th style="text-align:center" data-sort-ignore="true">Ide</th>
+						<th style="text-align:center" data-sort-ignore="true">Id</th>
             			<th style="text-align:center" data-sort-ignore="true">Operador</th>
                 		<th style="text-align:center" data-sort-ignore="true">Procesadas</th>
                 		<th style="text-align:center" data-sort-ignore="true">Pendientes</th>
@@ -120,7 +130,8 @@
 	
          		echo '</tbody>
         		</table>
-                <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>';
+         <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>';
+	}
 ?>
 
 

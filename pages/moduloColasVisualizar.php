@@ -48,7 +48,7 @@
 	
 	//Operadores Conectados tengan o no Solicitudes procesadas el día de hoy
 	$estadoAnaCone= array('estado' =>'1');
-	$resultConectados=$client->analistasConectados($estadoOpeCon);
+	$resultConectados=$client->analistasConectados($estadoAnaCone);
 	
 	//Total de Solicitudes Pendientes por Procesar
 	$solPendXProc=$totalCola-$totalColaHoy;
