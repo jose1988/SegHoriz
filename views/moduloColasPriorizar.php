@@ -61,7 +61,7 @@
 			
 			/*Ajax de la tabla de conectados*/
 			$('#tabla').load('../ajax/cola.php' , 
-				function(){ setTimeout(refreshTable, 5000);
+				function(){ setTimeout(refreshTable, 20000);
 			});
 			
 		}
