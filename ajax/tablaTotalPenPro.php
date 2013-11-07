@@ -37,13 +37,13 @@
 	
 	//Si existen registros muestro la tabla
 	else{
-		echo '<table class="footable table table-striped table-bordered" align="center" data-page-size="10">
+		echo '<table class="footable table table-striped table-bordered" style="text-align:left;" data-page-size="5" >
         		<thead bgcolor="#B9B9B9">
         			<tr>
-						<th style="text-align:center" data-sort-ignore="true">Id</th>
-            			<th style="text-align:center" data-sort-ignore="true">Operador</th>
-                		<th style="text-align:center" data-sort-ignore="true">Procesadas</th>
-                		<th style="text-align:center" data-sort-ignore="true">Pendientes</th>
+						<th style="text-align:center" width="150px" data-sort-ignore="true">Id</th>
+            			<th style="text-align:center" width="150px" data-sort-ignore="true">Operador</th>
+                		<th style="text-align:center" width="150px" data-sort-ignore="true">Procesadas</th>
+                		<th style="text-align:center" width="150px" data-sort-ignore="true">Pendientes</th>
            		 	</tr>
         		</thead>                
         		<tbody>';
@@ -130,7 +130,7 @@
 	
          		echo '</tbody>
         		</table>
-         <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>';
+         <ul  id="pagination" class="footable-nav">  <span>Pag:</span></ul>';
 	}
 ?>
 

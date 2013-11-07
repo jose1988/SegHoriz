@@ -99,24 +99,29 @@
            
 	<!--Caso pantalla uno-->
    	<div class="tab-content">
-       
-       <div class="span10">
+       <div class="row-fluid">
+       <div class="span12">
        		<a href="moduloColasVisualizar.php"><button type="button" class="btn btn-success"><i class="icon-arrow-left"></i> Regresar</button></a>
        </div>
        
-       <div class="span10">
- 
-       		<div class="span4">
+    </div>
+  <div class="row-fluid">
+           
+       		<div class="span12" >
        			<br>
        			<br>
-				 	<div id="tablaAnalistas"></div>
-       		</div>
-       
+                <div class="span2"></div>
+				 	<div  class="span8"  id="tablaAnalistas"></div>
+       		       <div class="span2"></div> 
+            
+            </div>
+            
+   </div>    
        		<?php 
 			//Verificando que no este vacio o no sea null
 			if(isset($resultSolicitudesProcesadasXAnalista->return)){ 
 			?>   
-            <div class="span5">
+            <div class="span11" align="center">
             	<br>
        			<br>
        			<div id="grafico" style="min-width: 150px; max-width: 650px; height: 350px; margin: 0 auto">   	
@@ -124,7 +129,7 @@
        		</div>
            <?php }?>
        </div>
-      </div>
+      
 	</div>
     
     <!-- /container -->

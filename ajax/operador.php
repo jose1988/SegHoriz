@@ -168,19 +168,20 @@
 								  <td style="text-align:center"><a href="moduloColasAuditoria.php?id='. $Resultado->return->preorden->idpreorden.'"><i class="icon-check"></i></a></td>
                                    
                                    
-                                </tr>';		 
+                                </tr>
+								 </table>
+                           <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>';	 
 									 }
 								   }   else { 
 										 echo  '<div class="alert alert-block" align="center">
    										  <h2 style="color:rgb(255,255,255)" align="center">Atención</h2>
-    									  <h4 align="center">El Analista '. $Nanalista .'hoy no ha procesado solicitudes</h4>
+    									  <h4 align="center">El Analista '. $Nanalista .' hoy no ha procesado solicitudes</h4>
    			    					 </div> ';
 									 }
 							    
                                  
                              echo '</tbody>
-                            </table>
-                           <ul id="pagination" class="footable-nav"><span>Pag:</span></ul>
+                           
                             
                   </div>
                   
